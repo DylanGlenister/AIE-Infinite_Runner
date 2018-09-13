@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public LevelController lController;
-    public DeathController dController;
+    // References to other scripts
+    private DeathController dController;
 
     // Keycodes used to store player controls
     public KeyCode moveLeft = KeyCode.A;
@@ -23,27 +23,33 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     public float jumpForce = 30f;
     public float jumpDelay = 0.1f;
-    public float jumpTimer = 0.12f;
+    public float jumpTimer = 0.0f;
     public float maxRejumpDistance = 0.1f;
 
     // Player sliding variables
-    private bool sliding = false;
-    public float slideDelay = 0.1f;
-    public float slideTimer = 0.12f;
+    public bool standing = true;
+    public float slideDelay = 0.66f;
+    public float slideTimer = 0.0f;
 
     // Hit detection variables
-    public bool leftWallHit = false;
-    public bool rightWallHit = false;
+    private bool leftWallHit = false;
+    private bool rightWallHit = false;
     public float sideHitDetectionDistance = 0.06f;
-    public float frontHitDetectionDistance = 3f;
+    public float frontHitDetectionDistance = 3.5f;
 
     // A reference to the players rigidbody
-    public Rigidbody rb;
+    private Rigidbody rb;
+
+    // A reference to the animator
+    private Animator animator;
 
     private void Awake()
     {
-        lController = FindObjectOfType<LevelController>();
+        // Finds the scripts
         dController = FindObjectOfType<DeathController>();
+
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -51,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //----------Raycasting----------
+        //----------Side and ground collision----------
 
         // Tests if the player is in the air or not
         Ray groundDetectionRay = new Ray(transform.position + new Vector3(0, 0.01f, 0), new Vector3(0, -1, 0));
@@ -98,15 +104,26 @@ public class PlayerController : MonoBehaviour
         //----------Timers----------
 
         // Prevents the player from spamming the jump button
-        if (jumpTimer <= jumpDelay)
-            jumpTimer += Time.deltaTime;
+        if (jumpTimer >= 0)
+            jumpTimer -= Time.deltaTime;
+        else
+            jumpTimer = 0;
 
         // Prevents the player from spamming the slide button
-        if (sliding)
+        if (!standing)
         {
-
+            if (slideTimer == 0)
+            {
+                standing = true;
+            }
+            else
+            {
+                slideTimer -= Time.deltaTime;
+                if (slideTimer < 0)
+                    slideTimer = 0;
+            }
         }
-
+        
         //----------Player movement----------
 
         // Moves the player left
@@ -157,47 +174,81 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKey(moveLeft) && Input.GetKey(moveRight)) || !isGrounded)
             rb.AddForce(new Vector3(-(rb.velocity.x * 2), 0, 0));
 
+        // Makes the player slide
+        if (Input.GetKey(slide) && slideTimer == 0 && isGrounded && standing && !dController.HasPlayerCollided())
+        {
+            standing = false;
+            slideTimer = slideDelay;
+            // Play sliding animation
+            animator.Play("SlideAnimation");
+        }
+
         // Makes the player jump
-        if (Input.GetKey(jump) && jumpTimer >= 0.1f && isGrounded && !dController.HasPlayerCollided())
+        if (Input.GetKey(jump) && jumpTimer == 0 && isGrounded && standing && !dController.HasPlayerCollided())
         {
             rb.AddForce(new Vector3(0, 1, 0) * jumpForce, ForceMode.Impulse);
-            jumpTimer = 0f;
+            jumpTimer = jumpDelay;
         }
 
-        // Makes the player slide
-        if (Input.GetKeyDown(slide) && slideTimer >= 0.1f && isGrounded && !dController.HasPlayerCollided())
-        {
-            sliding = true;
-            // Play sliding animation
-        }
-        
+        if (dController.hasDied)
+            animator.Play("PlayerStill");
+
         //Debug.Log(rb.velocity.magnitude);
 
-        //----------Collision----------
+        //----------Front Collision----------
 
-        //Ray drawn on the left of the player to detect collsion between frames
-        Ray rayHitDetectLeft = new Ray(transform.position + new Vector3(-0.5f, 0, 0), new Vector3(0, 0, 1));
-        Debug.DrawLine(rayHitDetectLeft.origin, rayHitDetectLeft.origin + (Vector3.forward * frontHitDetectionDistance));
-        RaycastHit rayHitDetectLeftHitInfo;
-        if (Physics.Raycast(rayHitDetectLeft, out rayHitDetectLeftHitInfo, frontHitDetectionDistance))
+        //Ray drawn on the bottom left of the player to detect collsion between frames
+        Ray rayHitDetectBottomLeft = new Ray(transform.position + new Vector3(-0.5f, 1, 0), new Vector3(0, 0, 1));
+        Debug.DrawLine(rayHitDetectBottomLeft.origin, rayHitDetectBottomLeft.origin + (Vector3.forward * frontHitDetectionDistance));
+        RaycastHit rayHitDetectBottomLeftHitInfo;
+        if (Physics.Raycast(rayHitDetectBottomLeft, out rayHitDetectBottomLeftHitInfo, frontHitDetectionDistance))
         {
-            if (rayHitDetectLeftHitInfo.collider.name.Contains("Obstacle"))
+            if (rayHitDetectBottomLeftHitInfo.collider.name.Contains("Obstacle"))
             {
                 //Debug.Log("Left Ray Hit");
                 dController.ObstacleCollide();
             }
         }
 
-        //Ray drawn on the right of the player to detect collsion between frames
-        Ray rayHitDetectRight = new Ray(transform.position + new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1));
-        Debug.DrawLine(rayHitDetectRight.origin, rayHitDetectRight.origin + (Vector3.forward * frontHitDetectionDistance));
-        RaycastHit rayHitDetectRightHitInfo;
-        if (Physics.Raycast(rayHitDetectRight, out rayHitDetectRightHitInfo, frontHitDetectionDistance))
+        //Ray drawn on the bottom right of the player to detect collsion between frames
+        Ray rayHitDetectBottomRight = new Ray(transform.position + new Vector3(0.5f, 1, 0), new Vector3(0, 0, 1));
+        Debug.DrawLine(rayHitDetectBottomRight.origin, rayHitDetectBottomRight.origin + (Vector3.forward * frontHitDetectionDistance));
+        RaycastHit rayHitDetectBottomRightHitInfo;
+        if (Physics.Raycast(rayHitDetectBottomRight, out rayHitDetectBottomRightHitInfo, frontHitDetectionDistance))
         {
-            if (rayHitDetectRightHitInfo.collider.name.Contains("Obstacle"))
+            if (rayHitDetectBottomRightHitInfo.collider.name.Contains("Obstacle"))
             {
                 //Debug.Log("Right Ray Hit");
                 dController.ObstacleCollide();
+            }
+        }
+
+        if (standing)
+        {
+            //Ray drawn on the top left of the player to detect collsion between frames
+            Ray rayHitDetectTopLeft = new Ray(transform.position + new Vector3(-0.5f, 2.25f, 0), new Vector3(0, 0, 1));
+            Debug.DrawLine(rayHitDetectTopLeft.origin, rayHitDetectTopLeft.origin + (Vector3.forward * frontHitDetectionDistance));
+            RaycastHit rayHitDetectTopLeftHitInfo;
+            if (Physics.Raycast(rayHitDetectTopLeft, out rayHitDetectTopLeftHitInfo, frontHitDetectionDistance))
+            {
+                if (rayHitDetectTopLeftHitInfo.collider.name.Contains("Obstacle"))
+                {
+                    //Debug.Log("Left Ray Hit");
+                    dController.ObstacleCollide();
+                }
+            }
+
+            //Ray drawn on the top right of the player to detect collsion between frames
+            Ray rayHitDetectTopRight = new Ray(transform.position + new Vector3(0.5f, 2.25f, 0), new Vector3(0, 0, 1));
+            Debug.DrawLine(rayHitDetectTopRight.origin, rayHitDetectTopRight.origin + (Vector3.forward * frontHitDetectionDistance));
+            RaycastHit rayHitDetectTopRightHitInfo;
+            if (Physics.Raycast(rayHitDetectTopRight, out rayHitDetectTopRightHitInfo, frontHitDetectionDistance))
+            {
+                if (rayHitDetectTopRightHitInfo.collider.name.Contains("Obstacle"))
+                {
+                    //Debug.Log("Right Ray Hit");
+                    dController.ObstacleCollide();
+                }
             }
         }
 
