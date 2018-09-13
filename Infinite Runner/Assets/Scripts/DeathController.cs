@@ -29,12 +29,6 @@ public class DeathController : MonoBehaviour
     public void ObstacleCollide()
     {
         pause = true;
-    }
-
-    //Updates the player collide function when the player has collided
-    private void Update()
-    {
-        if (HasPlayerCollided())
-            hasDied = true;
+        hasDied = true;
     }
 }
