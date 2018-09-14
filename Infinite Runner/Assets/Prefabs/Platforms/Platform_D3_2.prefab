@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 23803995928682934}
   - component: {fileID: 114924945848209140}
   m_Layer: 0
-  m_Name: Platform_D3_1_Obstacle1
+  m_Name: Platform_D3_2_Obstacle1
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 23938608737909358}
   - component: {fileID: 114098622743156558}
   m_Layer: 0
-  m_Name: Platform_D3_1_Obstacle4
+  m_Name: Platform_D3_2_Obstacle4
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 23764041725932320}
   - component: {fileID: 114481886354165908}
   m_Layer: 0
-  m_Name: Platform_D3_1_Obstacle3
+  m_Name: Platform_D3_2_Obstacle3
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 23239490208400184}
   - component: {fileID: 114710530754800988}
   m_Layer: 0
-  m_Name: Platform_D3_1_Obstacle2
+  m_Name: Platform_D3_2_Obstacle2
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

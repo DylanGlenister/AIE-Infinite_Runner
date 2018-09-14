@@ -198,8 +198,8 @@ public class PlayerController : MonoBehaviour
         //----------Front Collision----------
 
         //Ray drawn on the bottom left of the player to detect collsion between frames
-        Ray rayHitDetectBottomLeft = new Ray(transform.position + new Vector3(-0.5f, 1, 0), new Vector3(0, 0, 1));
-        Debug.DrawLine(rayHitDetectBottomLeft.origin, rayHitDetectBottomLeft.origin + (Vector3.forward * frontHitDetectionDistance));
+        Ray rayHitDetectBottomLeft = new Ray(transform.position + new Vector3(-0.5f, 0.5f, 0), new Vector3(0, 0, 1));
+        //Debug.DrawLine(rayHitDetectBottomLeft.origin, rayHitDetectBottomLeft.origin + (Vector3.forward * frontHitDetectionDistance));
         RaycastHit rayHitDetectBottomLeftHitInfo;
         if (Physics.Raycast(rayHitDetectBottomLeft, out rayHitDetectBottomLeftHitInfo, frontHitDetectionDistance))
         {
@@ -211,8 +211,8 @@ public class PlayerController : MonoBehaviour
         }
 
         //Ray drawn on the bottom right of the player to detect collsion between frames
-        Ray rayHitDetectBottomRight = new Ray(transform.position + new Vector3(0.5f, 1, 0), new Vector3(0, 0, 1));
-        Debug.DrawLine(rayHitDetectBottomRight.origin, rayHitDetectBottomRight.origin + (Vector3.forward * frontHitDetectionDistance));
+        Ray rayHitDetectBottomRight = new Ray(transform.position + new Vector3(0.5f, 0.5f, 0), new Vector3(0, 0, 1));
+        //Debug.DrawLine(rayHitDetectBottomRight.origin, rayHitDetectBottomRight.origin + (Vector3.forward * frontHitDetectionDistance));
         RaycastHit rayHitDetectBottomRightHitInfo;
         if (Physics.Raycast(rayHitDetectBottomRight, out rayHitDetectBottomRightHitInfo, frontHitDetectionDistance))
         {
@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour
         {
             //Ray drawn on the top left of the player to detect collsion between frames
             Ray rayHitDetectTopLeft = new Ray(transform.position + new Vector3(-0.5f, 2.25f, 0), new Vector3(0, 0, 1));
-            Debug.DrawLine(rayHitDetectTopLeft.origin, rayHitDetectTopLeft.origin + (Vector3.forward * frontHitDetectionDistance));
+            //Debug.DrawLine(rayHitDetectTopLeft.origin, rayHitDetectTopLeft.origin + (Vector3.forward * frontHitDetectionDistance));
             RaycastHit rayHitDetectTopLeftHitInfo;
             if (Physics.Raycast(rayHitDetectTopLeft, out rayHitDetectTopLeftHitInfo, frontHitDetectionDistance))
             {
@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
 
             //Ray drawn on the top right of the player to detect collsion between frames
             Ray rayHitDetectTopRight = new Ray(transform.position + new Vector3(0.5f, 2.25f, 0), new Vector3(0, 0, 1));
-            Debug.DrawLine(rayHitDetectTopRight.origin, rayHitDetectTopRight.origin + (Vector3.forward * frontHitDetectionDistance));
+            //Debug.DrawLine(rayHitDetectTopRight.origin, rayHitDetectTopRight.origin + (Vector3.forward * frontHitDetectionDistance));
             RaycastHit rayHitDetectTopRightHitInfo;
             if (Physics.Raycast(rayHitDetectTopRight, out rayHitDetectTopRightHitInfo, frontHitDetectionDistance))
             {
