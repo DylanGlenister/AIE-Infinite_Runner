@@ -1774,6 +1774,8 @@ MonoBehaviour:
   pController: {fileID: 0}
   dController: {fileID: 0}
   sController: {fileID: 0}
+  randomNo: 0
+  diffiulty: 0
   platformMoveSpeed: 100
   platform_Empty: {fileID: 1582346143425088, guid: ae031f116923fbf4ab2667498d424ef2,
     type: 2}
@@ -1789,25 +1791,35 @@ MonoBehaviour:
     type: 2}
   platform_D0_5: {fileID: 1955884757493998, guid: bb3826356e7477441943475027a22425,
     type: 2}
-  platform_D0_6: {fileID: 1058557737049700, guid: 06a4a66da9ac1364fa70009de90cd2ff,
+  platform_D1_1: {fileID: 1980689294152482, guid: 634ced87087beb6438c6a5836bed982f,
     type: 2}
-  platform_D0_7: {fileID: 1481186247962262, guid: 35f21782a5967ab4d9b1dfffe0859534,
+  platform_D1_2: {fileID: 1463322009583772, guid: adb0ad4b23342b64fba6a4ca3b094e24,
     type: 2}
-  platform_D0_8: {fileID: 1230658270467002, guid: 8c49375949c020641a6bad7a7dd0181b,
+  platform_D1_3: {fileID: 1265784451760308, guid: 6a8267589c9b02047a0c45fcfcbf4820,
     type: 2}
-  platform_D0_9: {fileID: 1759825852608516, guid: fe141582675daf043999a5703480ea4a,
+  platform_D1_4: {fileID: 1925263075144112, guid: cea77142e359a0441bb86514fd3fc785,
     type: 2}
-  platform_D0_10: {fileID: 1419197607784676, guid: dcfe54b5522cf4c439c0972ce6fa2c64,
+  platform_D1_5: {fileID: 1763653490302270, guid: 94227f734a2e3344080bf0db15fabc1a,
     type: 2}
-  platform_D2_1: {fileID: 1528060321272970, guid: d752b72cf5597174c8a8f9b2dfd41e82,
+  platform_D2_1: {fileID: 1163378766658202, guid: d752b72cf5597174c8a8f9b2dfd41e82,
     type: 2}
-  platform_D3_1: {fileID: 1351965785363434, guid: e7ba9867e44ff4845a3b7dea8b64f903,
+  platform_D2_2: {fileID: 1951843502735056, guid: e692e4aee84afc94dbf167188b5bb272,
     type: 2}
-  platform_D3_2: {fileID: 1279972906554216, guid: 477b4fcd88eb4c44f99b7bede1ad01f7,
+  platform_D2_3: {fileID: 1981639103741150, guid: 619d98c9d42e006418186980f4ce2aea,
     type: 2}
-  platform_D3_3: {fileID: 1351965785363434, guid: 10cdfa76999242d41b0d57c6995a37dd,
+  platform_D2_4: {fileID: 1503759526102714, guid: 6a9ed4dbb780ad14c9f5833c88c583be,
     type: 2}
-  platform_D3_4: {fileID: 1924704140321426, guid: 66bba43ffb2c7e145a48aa0a27fef013,
+  platform_D2_5: {fileID: 1979364996370110, guid: 83423389a6639d14bb3b6339280879b0,
+    type: 2}
+  platform_D3_1: {fileID: 1227875838324316, guid: e7ba9867e44ff4845a3b7dea8b64f903,
+    type: 2}
+  platform_D3_2: {fileID: 1799001418223174, guid: 477b4fcd88eb4c44f99b7bede1ad01f7,
+    type: 2}
+  platform_D3_3: {fileID: 1463318663889634, guid: 10cdfa76999242d41b0d57c6995a37dd,
+    type: 2}
+  platform_D3_4: {fileID: 1572876085723376, guid: 66bba43ffb2c7e145a48aa0a27fef013,
+    type: 2}
+  platform_D3_5: {fileID: 1362233590195948, guid: ceeef61c61060004a9a9f76a35eeda89,
     type: 2}
 --- !u!4 &1288129224
 Transform:
