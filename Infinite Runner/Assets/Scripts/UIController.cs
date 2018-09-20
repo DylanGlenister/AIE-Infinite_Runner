@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
+    bool spamProtec = false;
+
     // References to other scripts
     public DeathController dController;
 
@@ -19,11 +21,15 @@ public class UIController : MonoBehaviour
     public GameObject ExitButton;
 
     public GameObject currentSelected;
+    public Button currentButton;
 
     private void Awake()
     {
         // Finds the scripts
         dController = FindObjectOfType<DeathController>();
+
+        currentSelected = RetryButton;
+        currentButton = currentSelected.GetComponent<Button>();
     }
 
     private void Update()
@@ -36,23 +42,49 @@ public class UIController : MonoBehaviour
             DeathMessage.SetActive(true);
             MenuItems.SetActive(true);
 
-            if (Input.GetAxis("DpadX") < 1)
+            currentButton.Select();
+
+            if (spamProtec == false && Input.GetAxis("DpadX") > 0)
             {
                 if (currentSelected == RetryButton)
+                {
                     currentSelected = MenuButton;
+                    currentButton = currentSelected.GetComponent<Button>();
+                }
                 else if (currentSelected == MenuButton)
+                {
                     currentSelected = ExitButton;
+                    currentButton = currentSelected.GetComponent<Button>();
+                }
                 else if (currentSelected == ExitButton)
+                {
                     currentSelected = RetryButton;
+                    currentButton = currentSelected.GetComponent<Button>();
+                }
+                spamProtec = true;
             }
-            else if (Input.GetAxis("DpadX") > 1)
+            else if (spamProtec == false && Input.GetAxis("DpadX") < 0)
             {
                 if (currentSelected == RetryButton)
+                {
                     currentSelected = ExitButton;
+                    currentButton = currentSelected.GetComponent<Button>();
+                }
                 else if (currentSelected == MenuButton)
+                {
                     currentSelected = RetryButton;
+                    currentButton = currentSelected.GetComponent<Button>();
+                }
                 else if (currentSelected == ExitButton)
+                {
                     currentSelected = MenuButton;
+                    currentButton = currentSelected.GetComponent<Button>();
+                }
+                spamProtec = true;
+            }
+            else if (Input.GetAxis("DpadX") < 0.1f && Input.GetAxis("DpadX") > -0.1f)
+            {
+                spamProtec = false;
             }
 
             if (Input.GetButtonDown("Submit"))

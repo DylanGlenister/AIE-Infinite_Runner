@@ -1,42 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuList : MonoBehaviour
 {
+    bool spamProtec = false;
+
     public GameObject PlayButton;
     public GameObject OptionsButton;
     public GameObject ExitButton;
 
     public GameObject currentSelected;
+    public Button currentButton;
 
     private void Start()
     {
         currentSelected = PlayButton;
+        currentButton = currentSelected.GetComponent<Button>();
     }
 
     private void Update()
     {
-        if (Input.GetAxis("DpadY") < 1)
-        {
-            if (currentSelected == PlayButton)
-                currentSelected = OptionsButton;
-            else if (currentSelected == OptionsButton)
-                currentSelected = ExitButton;
-            else if (currentSelected == ExitButton)
-                currentSelected = PlayButton;
-        }
-        else if (Input.GetAxis("DpadY") > 1)
-        {
-            if (currentSelected == PlayButton)
-                currentSelected = ExitButton;
-            else if (currentSelected == OptionsButton)
-                currentSelected = PlayButton;
-            else if (currentSelected == ExitButton)
-                currentSelected = OptionsButton;
-        }
-
         if (Input.GetButtonDown("Submit"))
         {
             if (currentSelected == PlayButton)
@@ -45,6 +31,51 @@ public class MenuList : MonoBehaviour
                 Debug.Log("Yes");
             else if (currentSelected == ExitButton)
                 Quit();
+        }
+
+        currentButton.Select();
+
+        if (spamProtec == false && Input.GetAxis("DpadY") < 0)
+        {
+            if (currentSelected == PlayButton)
+            {
+                currentSelected = OptionsButton;
+                currentButton = currentSelected.GetComponent<Button>();
+            }
+            else if (currentSelected == OptionsButton)
+            {
+                currentSelected = ExitButton;
+                currentButton = currentSelected.GetComponent<Button>();
+            }
+            else if (currentSelected == ExitButton)
+            {
+                currentSelected = PlayButton;
+                currentButton = currentSelected.GetComponent<Button>();
+            }
+            spamProtec = true;
+        }
+        else if (spamProtec == false && Input.GetAxis("DpadY") > 0)
+        {
+            if (currentSelected == PlayButton)
+            {
+                currentSelected = ExitButton;
+                currentButton = currentSelected.GetComponent<Button>();
+            }
+            else if (currentSelected == OptionsButton)
+            {
+                currentSelected = PlayButton;
+                currentButton = currentSelected.GetComponent<Button>();
+            }
+            else if (currentSelected == ExitButton)
+            {
+                currentSelected = OptionsButton;
+                currentButton = currentSelected.GetComponent<Button>();
+            }
+            spamProtec = true;
+        }
+        else if (Input.GetAxis("DpadY") < 0.1f && Input.GetAxis("DpadY") > -0.1f)
+        {
+            spamProtec = false;
         }
     }
 

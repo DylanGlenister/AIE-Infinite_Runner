@@ -37,8 +37,6 @@ public class PlayerController : MonoBehaviour
     public float sideHitDetectionDistance = 0.06f;
     public float frontHitDetectionDistance = 3.5f;
 
-   
-
     // A reference to the players rigidbody
     private Rigidbody rb;
 

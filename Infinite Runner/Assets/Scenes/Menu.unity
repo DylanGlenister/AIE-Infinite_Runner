@@ -1416,6 +1416,7 @@ MonoBehaviour:
   OptionsButton: {fileID: 1579714128}
   ExitButton: {fileID: 701797821}
   currentSelected: {fileID: 0}
+  currentButton: {fileID: 0}
 --- !u!1 &1320403285
 GameObject:
   m_ObjectHideFlags: 0

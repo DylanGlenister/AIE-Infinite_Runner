@@ -104,7 +104,7 @@ public class LevelController : MonoBehaviour
             if (platform.transform.position.z < -100)
             {
                 // Randomizes the platforms then accounts for difficulty
-                randomNo = Random.Range(0, 9);
+                randomNo = Random.Range(0, 5);
                 //Debug.Log(randomNo);
                 if (randomNo > 4)
                 {

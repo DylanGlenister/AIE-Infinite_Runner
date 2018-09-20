@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infinite Runner", "Infinite Runner.csproj", "{DCB096BF-0095-DCCE-6468-47B5E5A21163}"
 EndProject
 Global

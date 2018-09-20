@@ -2011,10 +2011,11 @@ MonoBehaviour:
   background: {fileID: 929510509}
   DeathMessage: {fileID: 547956500}
   MenuItems: {fileID: 112482962}
-  RetryButton: {fileID: 0}
-  MenuButton: {fileID: 0}
-  ExitButton: {fileID: 0}
+  RetryButton: {fileID: 1854939544}
+  MenuButton: {fileID: 1502602886}
+  ExitButton: {fileID: 133702192}
   currentSelected: {fileID: 0}
+  currentButton: {fileID: 0}
 --- !u!1001 &1497006878
 Prefab:
   m_ObjectHideFlags: 0
