@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infinite Runner", "Infinite Runner.csproj", "{DCB096BF-0095-DCCE-6468-47B5E5A21163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infinite Runner.Plugins", "Infinite Runner.Plugins.csproj", "{91826EB7-D002-D1BA-2699-2C496196FD2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infinite Runner.Editor.Plugins", "Infinite Runner.Editor.Plugins.csproj", "{865F8080-361B-2356-A419-D8936FF20A00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,14 @@ Global
 		{DCB096BF-0095-DCCE-6468-47B5E5A21163}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB096BF-0095-DCCE-6468-47B5E5A21163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB096BF-0095-DCCE-6468-47B5E5A21163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91826EB7-D002-D1BA-2699-2C496196FD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91826EB7-D002-D1BA-2699-2C496196FD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91826EB7-D002-D1BA-2699-2C496196FD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91826EB7-D002-D1BA-2699-2C496196FD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865F8080-361B-2356-A419-D8936FF20A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865F8080-361B-2356-A419-D8936FF20A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865F8080-361B-2356-A419-D8936FF20A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865F8080-361B-2356-A419-D8936FF20A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

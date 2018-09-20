@@ -14,6 +14,12 @@ public class UIController : MonoBehaviour
     public GameObject DeathMessage;
     public GameObject MenuItems;
 
+    public GameObject RetryButton;
+    public GameObject MenuButton;
+    public GameObject ExitButton;
+
+    public GameObject currentSelected;
+
     private void Awake()
     {
         // Finds the scripts
@@ -25,9 +31,39 @@ public class UIController : MonoBehaviour
         // Enables all ui elements
         if (dController.hasDied)
         {
+            // This will spam - Fix it
             background.SetActive(true);
             DeathMessage.SetActive(true);
             MenuItems.SetActive(true);
+
+            if (Input.GetAxis("DpadX") < 1)
+            {
+                if (currentSelected == RetryButton)
+                    currentSelected = MenuButton;
+                else if (currentSelected == MenuButton)
+                    currentSelected = ExitButton;
+                else if (currentSelected == ExitButton)
+                    currentSelected = RetryButton;
+            }
+            else if (Input.GetAxis("DpadX") > 1)
+            {
+                if (currentSelected == RetryButton)
+                    currentSelected = ExitButton;
+                else if (currentSelected == MenuButton)
+                    currentSelected = RetryButton;
+                else if (currentSelected == ExitButton)
+                    currentSelected = MenuButton;
+            }
+
+            if (Input.GetButtonDown("Submit"))
+            {
+                if (currentSelected == RetryButton)
+                    RetryButtonClick();
+                else if (currentSelected == MenuButton)
+                    MenuButtonClick();
+                else if (currentSelected == ExitButton)
+                    QuitButtonClick();
+            }
         }
     }
 

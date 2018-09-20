@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public float sideHitDetectionDistance = 0.06f;
     public float frontHitDetectionDistance = 3.5f;
 
+   
+
     // A reference to the players rigidbody
     private Rigidbody rb;
 
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
         //----------Player movement----------
 
         // Moves the player left
-        if (Input.GetKey(moveLeft) && !leftWallHit && !dController.HasPlayerCollided())
+        if ((Input.GetKey(moveLeft) || Input.GetAxis("Horizontal") < 0) && !leftWallHit && !dController.HasPlayerCollided())
         {
             if (isGrounded && rb.velocity.magnitude < groundMaxMoveSpeed)
             {
@@ -149,7 +151,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Moves the player right
-        if (Input.GetKey(moveRight) && !rightWallHit && !dController.HasPlayerCollided())
+        if ((Input.GetKey(moveRight) || Input.GetAxis("Horizontal") > 0) && !rightWallHit && !dController.HasPlayerCollided())
         {
             if (isGrounded && rb.velocity.magnitude < groundMaxMoveSpeed)
             {
@@ -171,11 +173,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Slows the player down if they hold both movement keys at once or if they are airborn
-        if ((Input.GetKey(moveLeft) && Input.GetKey(moveRight)) || !isGrounded)
+        if (((Input.GetKey(moveLeft) || Input.GetAxis("Horizontal") < 0)
+            && (Input.GetKey(moveRight)) || Input.GetAxis("Horizontal") > 0)
+            || !isGrounded)
             rb.AddForce(new Vector3(-(rb.velocity.x * 2), 0, 0));
 
         // Makes the player slide
-        if (Input.GetKey(slide) && slideTimer == 0 && isGrounded && standing && !dController.HasPlayerCollided())
+        if ((Input.GetKey(slide) || Input.GetButton("Cancel")) && slideTimer == 0 && isGrounded && standing && !dController.HasPlayerCollided())
         {
             standing = false;
             slideTimer = slideDelay;
@@ -184,7 +188,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Makes the player jump
-        if (Input.GetKey(jump) && jumpTimer == 0 && isGrounded && standing && !dController.HasPlayerCollided())
+        if ((Input.GetKey(jump) || Input.GetButton("Submit")) && jumpTimer == 0 && isGrounded && standing && !dController.HasPlayerCollided())
         {
             rb.AddForce(new Vector3(0, 1, 0) * jumpForce, ForceMode.Impulse);
             jumpTimer = jumpDelay;
