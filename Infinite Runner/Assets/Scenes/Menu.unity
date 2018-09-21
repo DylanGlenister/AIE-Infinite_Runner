@@ -1121,7 +1121,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e78e044e6210adc4aaa8694a0a761bf2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2337,10 +2337,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hs: {fileID: 0}
+  menuList: {fileID: 1192039841}
   PlayButton: {fileID: 429071299}
   LeaderboardButton: {fileID: 1579714128}
   ExitButton: {fileID: 701797821}
   LeaderboardScreen: {fileID: 541637925}
+  backButton: {fileID: 2013231430}
   firstScoreText: {fileID: 1652121363}
   secondScoreText: {fileID: 248486327}
   thirdScoreText: {fileID: 1626063146}
@@ -2826,28 +2828,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 541637925}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1192039841}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1192039843}
         m_MethodName: Highscores
         m_Mode: 1

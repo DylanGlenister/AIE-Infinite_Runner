@@ -7,14 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class MenuList : MonoBehaviour
 {
+    // It protec from spam
     bool spamProtec = false;
 
     public Highscores hs;
 
+    public GameObject menuList;
     public GameObject PlayButton;
     public GameObject LeaderboardButton;
     public GameObject ExitButton;
     public GameObject LeaderboardScreen;
+    public GameObject backButton;
 
     public TextMeshProUGUI firstScoreText;
     public TextMeshProUGUI secondScoreText;
@@ -37,13 +40,27 @@ public class MenuList : MonoBehaviour
         if (Input.GetButtonDown("Submit"))
         {
             if (currentSelected == PlayButton)
+            {
                 Play();
+            }
             else if (currentSelected == LeaderboardButton)
-                Debug.Log("Yes");
+            {
+                Highscores();
+                currentSelected = backButton;
+            }
+            else if (currentSelected == backButton)
+            {
+                currentSelected = LeaderboardButton;
+                LeaderboardScreen.SetActive(false);
+                menuList.SetActive(true);
+            }
             else if (currentSelected == ExitButton)
+            {
                 Quit();
+            }
         }
 
+        // For PS4
         //currentButton.Select();
 
         if (spamProtec == false && Input.GetAxis("DpadY") < 0)
@@ -99,6 +116,7 @@ public class MenuList : MonoBehaviour
     public void Highscores()
     {
         LeaderboardScreen.SetActive(true);
+        menuList.SetActive(false);
         hs.LoadScoresFromFile();
         firstScoreText.text = hs.scoreArray[0].ToString();
         secondScoreText.text = hs.scoreArray[1].ToString();
