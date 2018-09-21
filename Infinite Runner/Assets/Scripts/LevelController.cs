@@ -113,7 +113,7 @@ public class LevelController : MonoBehaviour
                 //Debug.Log(randomNo);
                 if (randomNo > 4)
                 {
-                    GameObject newPlatform = Instantiate(platform_Empty, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                    GameObject newPlatform = Instantiate(platform_Empty, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                     newPlatforms.Add(newPlatform);
                 }
                 else
@@ -123,108 +123,108 @@ public class LevelController : MonoBehaviour
                         case 0:
                             if (randomNo == 0)
                             {
-                                GameObject newPlatform = Instantiate(platform_D0_1, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D0_1, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 1)
                             {
-                                GameObject newPlatform = Instantiate(platform_D0_2, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D0_2, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 2)
                             {
-                                GameObject newPlatform = Instantiate(platform_D0_3, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D0_3, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 3)
                             {
-                                GameObject newPlatform = Instantiate(platform_D0_4, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D0_4, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 4)
                             {
-                                GameObject newPlatform = Instantiate(platform_D0_5, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D0_5, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             break;
                         case 1:
                             if (randomNo == 0)
                             {
-                                GameObject newPlatform = Instantiate(platform_D1_1, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D1_1, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 1)
                             {
-                                GameObject newPlatform = Instantiate(platform_D1_2, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D1_2, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 2)
                             {
-                                GameObject newPlatform = Instantiate(platform_D1_3, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D1_3, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 3)
                             {
-                                GameObject newPlatform = Instantiate(platform_D1_4, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D1_4, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 4)
                             {
-                                GameObject newPlatform = Instantiate(platform_D1_5, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D1_5, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             break;
                         case 2:
                             if (randomNo == 0)
                             {
-                                GameObject newPlatform = Instantiate(platform_D2_1, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D2_1, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 1)
                             {
-                                GameObject newPlatform = Instantiate(platform_D2_2, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D2_2, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 2)
                             {
-                                GameObject newPlatform = Instantiate(platform_D2_3, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D2_3, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 3)
                             {
-                                GameObject newPlatform = Instantiate(platform_D2_4, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D2_4, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 4)
                             {
-                                GameObject newPlatform = Instantiate(platform_D2_5, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D2_5, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             break;
                         case 3:
                             if (randomNo == 0)
                             {
-                                GameObject newPlatform = Instantiate(platform_D3_1, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D3_1, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 1)
                             {
-                                GameObject newPlatform = Instantiate(platform_D3_2, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D3_2, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 2)
                             {
-                                GameObject newPlatform = Instantiate(platform_D3_3, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D3_3, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 3)
                             {
-                                GameObject newPlatform = Instantiate(platform_D3_4, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D3_4, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             else if (randomNo == 4)
                             {
-                                GameObject newPlatform = Instantiate(platform_D3_5, new Vector3(0, -0.5f, platform.transform.position.z + 1200.0f), Quaternion.identity);
+                                GameObject newPlatform = Instantiate(platform_D3_5, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                                 newPlatforms.Add(newPlatform);
                             }
                             break;
