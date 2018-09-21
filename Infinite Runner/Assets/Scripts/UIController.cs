@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class UIController : MonoBehaviour
 
     // References to other scripts
     public DeathController dController;
+    public ScoreController sController;
 
     // Storage for references to UI elements
     public GameObject background;
@@ -19,21 +21,24 @@ public class UIController : MonoBehaviour
     public GameObject RetryButton;
     public GameObject MenuButton;
     public GameObject ExitButton;
-
+    
     public GameObject currentSelected;
+    public TextMeshProUGUI Txt;
     public Button currentButton;
-
+    
     private void Awake()
     {
         // Finds the scripts
         dController = FindObjectOfType<DeathController>();
-
+        sController = FindObjectOfType<ScoreController>();
         currentSelected = RetryButton;
         currentButton = currentSelected.GetComponent<Button>();
     }
 
     private void Update()
     {
+        Txt.text = sController.Score.ToString(); 
+
         // Enables all ui elements
         if (dController.hasDied)
         {
