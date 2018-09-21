@@ -10,8 +10,10 @@ public class MenuList : MonoBehaviour
     // It protec from spam
     bool spamProtec = false;
 
+    // Reference to the highscore script
     public Highscores hs;
 
+    // References to all the required UI elements
     public GameObject menuList;
     public GameObject PlayButton;
     public GameObject LeaderboardButton;
@@ -19,24 +21,29 @@ public class MenuList : MonoBehaviour
     public GameObject LeaderboardScreen;
     public GameObject backButton;
 
+    // References to all the requires text boxes for highscores
     public TextMeshProUGUI firstScoreText;
     public TextMeshProUGUI secondScoreText;
     public TextMeshProUGUI thirdScoreText;
     public TextMeshProUGUI forthScoreText;
     public TextMeshProUGUI fifthScoreText;
-
+    
+    // The currently selected options (for PS4)
     public GameObject currentSelected;
     public Button currentButton;
 
     private void Awake()
     {
+        // Finds the script
+        hs = FindObjectOfType<Highscores>();
+        // Initialises the currently selected options (for PS4)
         currentSelected = PlayButton;
         currentButton = currentSelected.GetComponent<Button>();
-        hs = FindObjectOfType<Highscores>();
     }
 
     private void Update()
     {
+        // Activates the currently selected button (for PS4)
         if (Input.GetButtonDown("Submit"))
         {
             if (currentSelected == PlayButton)
@@ -45,11 +52,13 @@ public class MenuList : MonoBehaviour
             }
             else if (currentSelected == LeaderboardButton)
             {
+                // Opens the highscores screen
                 Highscores();
                 currentSelected = backButton;
             }
             else if (currentSelected == backButton)
             {
+                // Closes the highscores screen
                 currentSelected = LeaderboardButton;
                 LeaderboardScreen.SetActive(false);
                 menuList.SetActive(true);
@@ -60,11 +69,14 @@ public class MenuList : MonoBehaviour
             }
         }
 
-        // For PS4
+        // Highlights the currently selected button (For PS4)
         //currentButton.Select();
 
+        // The horizontal axis for the Dpad ( <0 is left and >0 is right
         if (spamProtec == false && Input.GetAxis("DpadY") < 0)
         {
+            // Changes the currently selected based on the previously selected
+            // This is probably not the best way to do this
             if (currentSelected == PlayButton)
             {
                 currentSelected = LeaderboardButton;
@@ -102,7 +114,7 @@ public class MenuList : MonoBehaviour
             spamProtec = true;
         }
         else if (Input.GetAxis("DpadY") < 0.1f && Input.GetAxis("DpadY") > -0.1f)
-        {
+        {           // This resets the spamProtec bool when neither left or right is being pressed
             spamProtec = false;
         }
     }
@@ -115,6 +127,7 @@ public class MenuList : MonoBehaviour
 
     public void Highscores()
     {
+        // Displays the highscores screen and loads the scores from the array
         LeaderboardScreen.SetActive(true);
         menuList.SetActive(false);
         hs.LoadScoresFromFile();

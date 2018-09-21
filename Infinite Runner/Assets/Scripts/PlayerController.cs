@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         // Finds the scripts
         dController = FindObjectOfType<DeathController>();
 
+        // Assigns the rigidbody and animator
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
@@ -142,7 +143,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    if (LRValue > 0f)   // Moving right
+                    if (LRValue > 0f)   // Player currently moving right
                         rb.AddForce(new Vector3(-airMoveSpeed, 0, 0));
                 }
             }
@@ -164,7 +165,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    if (LRValue < 0f)   // Moving left
+                    if (LRValue < 0f)   // Player currently moving left
                         rb.AddForce(new Vector3(airMoveSpeed, 0, 0));
                 }
             }
@@ -187,6 +188,7 @@ public class PlayerController : MonoBehaviour
             jumpTimer = jumpDelay;
         }
 
+        // Stops the running animation if the player has died
         if (dController.hasDied)
             animator.Play("PlayerStill");
 
@@ -249,6 +251,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // Stops player physics if they have hit an obstacle
         if (dController.HasPlayerCollided())
             rb.isKinematic = true;
     }

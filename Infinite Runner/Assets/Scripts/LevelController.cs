@@ -113,13 +113,16 @@ public class LevelController : MonoBehaviour
                 //Debug.Log(randomNo);
                 if (randomNo > 4)
                 {
+                    // Creates an empty platform
                     GameObject newPlatform = Instantiate(platform_Empty, new Vector3(0, -0.5f, platform.transform.position.z + 1800.0f), Quaternion.identity);
                     newPlatforms.Add(newPlatform);
                 }
                 else
                 {
+                    // Has sets of platforms based on the difficulty which scales based on score
                     switch (diffiulty)
                     {
+                        // Difficulty 1
                         case 0:
                             if (randomNo == 0)
                             {
@@ -147,6 +150,7 @@ public class LevelController : MonoBehaviour
                                 newPlatforms.Add(newPlatform);
                             }
                             break;
+                        // Difficulty 2
                         case 1:
                             if (randomNo == 0)
                             {
@@ -174,6 +178,7 @@ public class LevelController : MonoBehaviour
                                 newPlatforms.Add(newPlatform);
                             }
                             break;
+                        // Difficulty 3
                         case 2:
                             if (randomNo == 0)
                             {
@@ -201,6 +206,7 @@ public class LevelController : MonoBehaviour
                                 newPlatforms.Add(newPlatform);
                             }
                             break;
+                        // Difficulty 4
                         case 3:
                             if (randomNo == 0)
                             {

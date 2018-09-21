@@ -18,7 +18,6 @@ public class UIController : MonoBehaviour
     public GameObject background;
     public GameObject deathMessage;
     public GameObject menuItems;
-
     public GameObject retryButton;
     public GameObject menuButton;
     public GameObject exitButton;
@@ -26,6 +25,7 @@ public class UIController : MonoBehaviour
     public GameObject currentSelected;
     public Button currentButton;
 
+    // Reference to the textbox that displays the score
     public TextMeshProUGUI scoreText;
     
     private void Awake()
@@ -34,6 +34,7 @@ public class UIController : MonoBehaviour
         dController = FindObjectOfType<DeathController>();
         sController = FindObjectOfType<ScoreController>();
         hs = FindObjectOfType<Highscores>();
+        // Initialises the currently selected options (for PS4)
         currentSelected = retryButton;
         currentButton = currentSelected.GetComponent<Button>();
     }
@@ -51,8 +52,22 @@ public class UIController : MonoBehaviour
 
             //currentButton.Select();
 
+            // Activates the currently selected button (for PS4)
+            if (Input.GetButtonDown("Submit"))
+            {
+                if (currentSelected == retryButton)
+                    RetryButtonClick();
+                else if (currentSelected == menuButton)
+                    MenuButtonClick();
+                else if (currentSelected == exitButton)
+                    QuitButtonClick();
+            }
+
+            // The horizontal axis for the Dpad ( <0 is left and >0 is right
             if (spamProtec == false && Input.GetAxis("DpadX") > 0)
             {
+                // Changes the currently selected based on the previously selected
+                // This is probably not the best way to do this
                 if (currentSelected == retryButton)
                 {
                     currentSelected = menuButton;
@@ -90,44 +105,37 @@ public class UIController : MonoBehaviour
                 spamProtec = true;
             }
             else if (Input.GetAxis("DpadX") < 0.1f && Input.GetAxis("DpadX") > -0.1f)
-            {
+            {           // This resets the spamProtec bool when neither left or right is being pressed
                 spamProtec = false;
             }
 
-            if (Input.GetButtonDown("Submit"))
-            {
-                if (currentSelected == retryButton)
-                    RetryButtonClick();
-                else if (currentSelected == menuButton)
-                    MenuButtonClick();
-                else if (currentSelected == exitButton)
-                    QuitButtonClick();
-            }
         }
         else
         {
+            // Updates the score text
             scoreText.text = sController.Score.ToString(); 
         }
     }
 
     public void RetryButtonClick()
     {
+        // Saves the score and reloads the current scene to restart the level
         hs.AddScore(sController.Score);
         hs.SaveScoresToFile();
-        // Reloads the current scene to restart the level
         SceneManager.LoadScene(1);
     }
 
     public void MenuButtonClick()
     {
+        // Saves the score and loads the menu scene
         hs.AddScore(sController.Score);
         hs.SaveScoresToFile();
-        // Loads the menu scene
         SceneManager.LoadScene(0);
     }
 
     public void QuitButtonClick()
     {
+        // Saves the score and exists the program (doesnt work on PS4 lol)
         hs.AddScore(sController.Score);
         hs.SaveScoresToFile();
 
