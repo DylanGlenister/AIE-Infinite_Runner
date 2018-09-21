@@ -42,7 +42,7 @@ public class UIController : MonoBehaviour
             DeathMessage.SetActive(true);
             MenuItems.SetActive(true);
 
-            currentButton.Select();
+            //currentButton.Select();
 
             if (spamProtec == false && Input.GetAxis("DpadX") > 0)
             {

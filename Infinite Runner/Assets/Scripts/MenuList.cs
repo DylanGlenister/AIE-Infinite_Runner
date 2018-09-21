@@ -33,7 +33,7 @@ public class MenuList : MonoBehaviour
                 Quit();
         }
 
-        currentButton.Select();
+        //currentButton.Select();
 
         if (spamProtec == false && Input.GetAxis("DpadY") < 0)
         {
