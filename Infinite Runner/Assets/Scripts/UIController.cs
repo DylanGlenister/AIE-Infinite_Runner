@@ -12,77 +12,79 @@ public class UIController : MonoBehaviour
     // References to other scripts
     public DeathController dController;
     public ScoreController sController;
+    public Highscores hs;
 
     // Storage for references to UI elements
     public GameObject background;
-    public GameObject DeathMessage;
-    public GameObject MenuItems;
+    public GameObject deathMessage;
+    public GameObject menuItems;
 
-    public GameObject RetryButton;
-    public GameObject MenuButton;
-    public GameObject ExitButton;
+    public GameObject retryButton;
+    public GameObject menuButton;
+    public GameObject exitButton;
     
     public GameObject currentSelected;
-    public TextMeshProUGUI Txt;
     public Button currentButton;
+
+    public TextMeshProUGUI scoreText;
     
     private void Awake()
     {
         // Finds the scripts
         dController = FindObjectOfType<DeathController>();
         sController = FindObjectOfType<ScoreController>();
-        currentSelected = RetryButton;
+        hs = FindObjectOfType<Highscores>();
+        currentSelected = retryButton;
         currentButton = currentSelected.GetComponent<Button>();
     }
 
     private void Update()
     {
-        Txt.text = sController.Score.ToString(); 
 
         // Enables all ui elements
         if (dController.hasDied)
         {
             // This will spam - Fix it
             background.SetActive(true);
-            DeathMessage.SetActive(true);
-            MenuItems.SetActive(true);
+            deathMessage.SetActive(true);
+            menuItems.SetActive(true);
 
             //currentButton.Select();
 
             if (spamProtec == false && Input.GetAxis("DpadX") > 0)
             {
-                if (currentSelected == RetryButton)
+                if (currentSelected == retryButton)
                 {
-                    currentSelected = MenuButton;
+                    currentSelected = menuButton;
                     currentButton = currentSelected.GetComponent<Button>();
                 }
-                else if (currentSelected == MenuButton)
+                else if (currentSelected == menuButton)
                 {
-                    currentSelected = ExitButton;
+                    currentSelected = exitButton;
                     currentButton = currentSelected.GetComponent<Button>();
                 }
-                else if (currentSelected == ExitButton)
+                else if (currentSelected == exitButton)
                 {
-                    currentSelected = RetryButton;
+                    currentSelected = retryButton;
                     currentButton = currentSelected.GetComponent<Button>();
                 }
                 spamProtec = true;
             }
             else if (spamProtec == false && Input.GetAxis("DpadX") < 0)
             {
-                if (currentSelected == RetryButton)
+                if (currentSelected == retryButton)
                 {
-                    currentSelected = ExitButton;
+                    currentSelected = exitButton;
                     currentButton = currentSelected.GetComponent<Button>();
                 }
-                else if (currentSelected == MenuButton)
+                else if (currentSelected == menuButton)
                 {
-                    currentSelected = RetryButton;
+                    currentSelected = retryButton;
                     currentButton = currentSelected.GetComponent<Button>();
                 }
-                else if (currentSelected == ExitButton)
+                else if (currentSelected == exitButton)
                 {
-                    currentSelected = MenuButton;
+                    currentSelected = menuButton;
                     currentButton = currentSelected.GetComponent<Button>();
                 }
                 spamProtec = true;
@@ -94,31 +96,41 @@ public class UIController : MonoBehaviour
 
             if (Input.GetButtonDown("Submit"))
             {
-                if (currentSelected == RetryButton)
+                if (currentSelected == retryButton)
                     RetryButtonClick();
-                else if (currentSelected == MenuButton)
+                else if (currentSelected == menuButton)
                     MenuButtonClick();
-                else if (currentSelected == ExitButton)
+                else if (currentSelected == exitButton)
                     QuitButtonClick();
             }
+        }
+        else
+        {
+            scoreText.text = sController.Score.ToString(); 
         }
     }
 
     public void RetryButtonClick()
     {
+        hs.AddScore(sController.Score);
+        hs.SaveScoresToFile();
         // Reloads the current scene to restart the level
         SceneManager.LoadScene(1);
     }
 
     public void MenuButtonClick()
     {
+        hs.AddScore(sController.Score);
+        hs.SaveScoresToFile();
         // Loads the menu scene
         SceneManager.LoadScene(0);
     }
 
-
     public void QuitButtonClick()
     {
+        hs.AddScore(sController.Score);
+        hs.SaveScoresToFile();
+
 #if UNITY_STANDALONE
         Application.Quit();
 #endif
@@ -127,5 +139,4 @@ public class UIController : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
-
 }

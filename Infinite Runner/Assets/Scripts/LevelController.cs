@@ -10,13 +10,18 @@ public class LevelController : MonoBehaviour
     public ScoreController sController;
 
     // Randomly generated number used for platform spawns
-    public int randomNo;
+    private int randomNo;
+
+    // Playform movement speed
+    public float platformMoveSpeed = 100.0f;
 
     // Difficulty settings
     public uint diffiulty = 0;
 
-    // Playform movement speed
-    public float platformMoveSpeed = 100.0f;
+    // Score at which the difficulty increases
+    public int difficulty2Score = 80;
+    public int difficulty3Score = 200;
+    public int difficulty4Score = 360;
 
     // Reference to the platform prefabs
     public GameObject platform_Empty;
@@ -86,11 +91,11 @@ public class LevelController : MonoBehaviour
     private void FixedUpdate()
     {
         // Controls difficulty based on score (distance travelled)
-        if (sController.Score > 800 && diffiulty == 0)
+        if (sController.Score > difficulty2Score && diffiulty == 0)
             diffiulty = 1;
-        else if (sController.Score > 2400 && diffiulty == 1)
+        else if (sController.Score > difficulty3Score && diffiulty == 1)
             diffiulty = 2;
-        else if (sController.Score > 5000 && diffiulty == 2)
+        else if (sController.Score > difficulty4Score && diffiulty == 2)
             diffiulty = 3;
 
         // Resets the newPlatforms and deletedPlatforms list

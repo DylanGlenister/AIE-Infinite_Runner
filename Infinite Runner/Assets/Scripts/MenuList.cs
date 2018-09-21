@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -8,17 +9,27 @@ public class MenuList : MonoBehaviour
 {
     bool spamProtec = false;
 
+    public Highscores hs;
+
     public GameObject PlayButton;
-    public GameObject OptionsButton;
+    public GameObject LeaderboardButton;
     public GameObject ExitButton;
+    public GameObject LeaderboardScreen;
+
+    public TextMeshProUGUI firstScoreText;
+    public TextMeshProUGUI secondScoreText;
+    public TextMeshProUGUI thirdScoreText;
+    public TextMeshProUGUI forthScoreText;
+    public TextMeshProUGUI fifthScoreText;
 
     public GameObject currentSelected;
     public Button currentButton;
 
-    private void Start()
+    private void Awake()
     {
         currentSelected = PlayButton;
         currentButton = currentSelected.GetComponent<Button>();
+        hs = FindObjectOfType<Highscores>();
     }
 
     private void Update()
@@ -27,7 +38,7 @@ public class MenuList : MonoBehaviour
         {
             if (currentSelected == PlayButton)
                 Play();
-            else if (currentSelected == OptionsButton)
+            else if (currentSelected == LeaderboardButton)
                 Debug.Log("Yes");
             else if (currentSelected == ExitButton)
                 Quit();
@@ -39,10 +50,10 @@ public class MenuList : MonoBehaviour
         {
             if (currentSelected == PlayButton)
             {
-                currentSelected = OptionsButton;
+                currentSelected = LeaderboardButton;
                 currentButton = currentSelected.GetComponent<Button>();
             }
-            else if (currentSelected == OptionsButton)
+            else if (currentSelected == LeaderboardButton)
             {
                 currentSelected = ExitButton;
                 currentButton = currentSelected.GetComponent<Button>();
@@ -61,14 +72,14 @@ public class MenuList : MonoBehaviour
                 currentSelected = ExitButton;
                 currentButton = currentSelected.GetComponent<Button>();
             }
-            else if (currentSelected == OptionsButton)
+            else if (currentSelected == LeaderboardButton)
             {
                 currentSelected = PlayButton;
                 currentButton = currentSelected.GetComponent<Button>();
             }
             else if (currentSelected == ExitButton)
             {
-                currentSelected = OptionsButton;
+                currentSelected = LeaderboardButton;
                 currentButton = currentSelected.GetComponent<Button>();
             }
             spamProtec = true;
@@ -83,6 +94,17 @@ public class MenuList : MonoBehaviour
     {
         // Loads the game scene
         SceneManager.LoadScene(1);
+    }
+
+    public void Highscores()
+    {
+        LeaderboardScreen.SetActive(true);
+        hs.LoadScoresFromFile();
+        firstScoreText.text = hs.scoreArray[0].ToString();
+        secondScoreText.text = hs.scoreArray[1].ToString();
+        thirdScoreText.text = hs.scoreArray[2].ToString();
+        forthScoreText.text = hs.scoreArray[3].ToString();
+        fifthScoreText.text = hs.scoreArray[4].ToString();
     }
 
     public void Quit()

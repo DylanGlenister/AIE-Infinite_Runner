@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicController : MonoBehaviour {
-
-    // Use this for initialization
+public class MusicController : MonoBehaviour
+{
     private void Awake()
     {
         GameObject[] obj = GameObject.FindGameObjectsWithTag("Music");
@@ -13,5 +12,4 @@ public class MusicController : MonoBehaviour {
         }
         DontDestroyOnLoad(this.gameObject);
     }
-
 }
