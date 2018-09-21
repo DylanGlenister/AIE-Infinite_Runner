@@ -123,9 +123,9 @@ public class PlayerController : MonoBehaviour
                     slideTimer = 0;
             }
         }
-        
-        //----------Player movement----------
 
+        //----------Player movement----------
+        
         // Moves the player left
         if ((Input.GetKey(moveLeft) || Input.GetAxis("Horizontal") < 0) && !leftWallHit && !dController.HasPlayerCollided())
         {
@@ -170,11 +170,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Slows the player down if they hold both movement keys at once or if they are airborn
-        if (((Input.GetKey(moveLeft) || Input.GetAxis("Horizontal") < 0)
-            && (Input.GetKey(moveRight)) || Input.GetAxis("Horizontal") > 0)
-            || !isGrounded)
-            rb.AddForce(new Vector3(-(rb.velocity.x * 2), 0, 0));
 
         // Makes the player slide
         if ((Input.GetKey(slide) || Input.GetButton("Cancel")) && slideTimer == 0 && isGrounded && standing && !dController.HasPlayerCollided())
